@@ -346,6 +346,69 @@ button:focus-visible {
 }
 
 /* == PRICING == */
+#pricing {
+  padding: 7rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.pricing-panel {
+  border: 1px solid rgba(201, 162, 77, 0.35);
+  padding: clamp(2rem, 5vw, 4rem);
+  text-align: center;
+  max-width: 760px;
+  margin-inline: auto;
+  background: radial-gradient(ellipse at top, rgba(201, 162, 77, 0.05), transparent 60%);
+}
+
+.price-giant {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  line-height: 1;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.price-subline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--silver-hi);
+  font-size: 1.15rem;
+  margin: 0 0 1.75rem;
+}
+
+.pricing-body {
+  color: var(--text-dim);
+  line-height: 1.8;
+  max-width: 48ch;
+  margin: 0 auto 2.25rem;
+}
+
+.pricing-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+.pricing-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+}
+
+.pricing-checklist li::before {
+  content: "✓";
+  color: var(--gold);
+}
 
 /* == PROCESS == */
 
