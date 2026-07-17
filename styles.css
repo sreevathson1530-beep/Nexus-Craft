@@ -1,0 +1,143 @@
+:root {
+  --bg: #0a0a0a;
+  --gold: #c9a24d;
+  --gold-hi: #e8c170;
+  --silver: #b8b8b8;
+  --silver-hi: #e4e4e4;
+  --text: #e9e4d6;
+  --text-dim: rgba(233, 228, 214, 0.65);
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --container: 1180px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--gold-hi);
+  outline-offset: 3px;
+}
+
+.container {
+  width: min(92%, var(--container));
+  margin-inline: auto;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(184, 184, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 184, 184, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse at top, black, transparent 75%);
+  mask-image: radial-gradient(ellipse at top, black, transparent 75%);
+}
+
+.bg-glow {
+  position: fixed;
+  top: -10%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  background: radial-gradient(circle, rgba(201, 162, 77, 0.1), transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.site-header {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem 0 0;
+}
+
+.header-inner {
+  width: min(92%, var(--container));
+  margin-inline: auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.brand-word {
+  font-family: var(--font-serif);
+  letter-spacing: 0.04em;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* == HERO == */
+
+/* == SERVICES == */
+
+/* == PRICING == */
+
+/* == PROCESS == */
+
+/* == CTA == */
+
+/* == FOOTER == */
