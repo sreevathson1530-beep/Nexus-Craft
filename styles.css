@@ -131,6 +131,121 @@ button:focus-visible {
 }
 
 /* == HERO == */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 6rem 0 2.5rem;
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(92%, var(--container));
+  margin-inline: auto;
+}
+
+.hero-headline {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5vw + 1rem, 4.2rem);
+  line-height: 1.08;
+  margin: 1.25rem 0 1.5rem;
+  max-width: 16ch;
+}
+
+.hero-headline em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--gold-hi);
+}
+
+.hero-subhead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+  max-width: 52ch;
+  margin-bottom: 3rem;
+}
+
+.hero-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  border-top: 1px solid rgba(184, 184, 184, 0.15);
+  padding-top: 1.75rem;
+}
+
+.call-label {
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--silver);
+  margin: 0;
+}
+
+.hero-phone {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--text);
+  display: inline-block;
+  margin-top: 0.4rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.hero-phone:hover,
+.hero-phone:focus-visible {
+  color: var(--gold-hi);
+  border-color: var(--gold-hi);
+}
+
+.hero-price-block {
+  text-align: right;
+}
+
+.hero-price {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  color: var(--gold);
+  margin: 0;
+}
+
+.hero-price-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--silver);
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 640px) {
+  .hero-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-price-block {
+    text-align: left;
+  }
+}
 
 /* == SERVICES == */
 
