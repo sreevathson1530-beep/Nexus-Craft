@@ -755,9 +755,14 @@ html.js .hero [data-hero-fade] { opacity: 0; }
   z-index: 1;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
 }
 
-.odo-static { display: inline-block; }
+.odo-static {
+  display: inline-block;
+  height: 1em;
+  line-height: 1;
+}
 
 .odo-digit {
   display: inline-block;

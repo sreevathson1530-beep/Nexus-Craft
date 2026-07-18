@@ -51,17 +51,30 @@
     });
   }
 
+  /* Screen-space perimeter: with vector-effect non-scaling-stroke,
+     dash patterns are computed in screen units, not viewBox units. */
+  function screenLen(el, kind) {
+    var b = el.getBoundingClientRect();
+    if (kind === 'rect') return 2 * (b.width + b.height);
+    if (kind === 'h') return b.width;
+    return b.height;
+  }
+
   function drawBorder(animated) {
     if (!borderRect) return;
-    var len = 0;
-    try { len = borderRect.getTotalLength(); } catch (e) { return; }
     if (!animated || !hasMotion) return; /* static border is already visible */
+    var len = screenLen(borderRect, 'rect');
+    if (!len) return;
     borderRect.style.strokeDasharray = String(len);
     borderRect.style.strokeDashoffset = String(len);
     try {
-      M.animate(borderRect,
-        { strokeDashoffset: [len, 0] },
-        { duration: 1.4, ease: [0.22, 1, 0.36, 1], easing: [0.22, 1, 0.36, 1] });
+      /* Motion's element animate no-ops strokeDashoffset on <rect>/<line>;
+         drive the value manually instead. */
+      M.animate(0, 1, {
+        duration: 1.4,
+        ease: [0.22, 1, 0.36, 1], easing: [0.22, 1, 0.36, 1],
+        onUpdate: function (p) { borderRect.style.strokeDashoffset = String(len * (1 - p)); }
+      });
     } catch (e) {
       borderRect.style.strokeDashoffset = '0';
     }
@@ -99,7 +112,7 @@
             try {
               M.animate(bloom,
                 { opacity: [0, 0.9, 0.55], scale: [0.6, 1.12, 1] },
-                { duration: 1.4, ease: 'ease-out', easing: 'ease-out' });
+                { duration: 1.4, ease: [0, 0, 0.58, 1], easing: [0, 0, 0.58, 1] });
             } catch (e) { bloom.style.opacity = '0.5'; }
           }
           drawBorder(true);
@@ -142,8 +155,7 @@
     if (reduceMotion || !M || typeof M.scroll !== 'function') {
       steps.forEach(function (s) { s.classList.add('is-lit'); });
     } else {
-      var tLen = 0;
-      try { tLen = threadLine.getTotalLength(); } catch (e) { tLen = 100; }
+      var tLen = screenLen(threadLine, 'v') || 100;
       threadLine.style.strokeDasharray = String(tLen);
       threadLine.style.strokeDashoffset = String(tLen);
       try {
@@ -214,7 +226,7 @@
     } else if (hasMotion) {
       var uLen = 0;
       if (underline) {
-        try { uLen = underline.getTotalLength(); } catch (e) { uLen = 100; }
+        uLen = screenLen(underline, 'h') || 100;
         underline.style.strokeDasharray = String(uLen);
         underline.style.strokeDashoffset = String(uLen);
       }
@@ -222,9 +234,11 @@
         cta.classList.add('is-lit');
         if (underline && uLen) {
           try {
-            M.animate(underline,
-              { strokeDashoffset: [uLen, 0] },
-              { duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1], easing: [0.22, 1, 0.36, 1] });
+            M.animate(0, 1, {
+              duration: 1, delay: 0.6,
+              ease: [0.22, 1, 0.36, 1], easing: [0.22, 1, 0.36, 1],
+              onUpdate: function (p) { underline.style.strokeDashoffset = String(uLen * (1 - p)); }
+            });
           } catch (e) { underline.style.strokeDashoffset = '0'; }
         }
         if (typeof stopCta === 'function') stopCta();

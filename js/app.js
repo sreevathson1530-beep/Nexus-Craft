@@ -4,7 +4,8 @@
 
   var docEl = document.documentElement;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var finePointer = window.matchMedia('(pointer: fine)').matches;
+  var finePointer = window.matchMedia('(pointer: fine)').matches &&
+                    window.matchMedia('(hover: hover)').matches;
   var M = window.Motion || null;
 
   /* Shared state for hero.js / scenes.js */
