@@ -5,35 +5,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NEXUS CRAFT — Website Development Studio</title>
 <meta name="description" content="NEXUS CRAFT builds fast, beautiful, conversion-ready websites for businesses that mean business. Every service, one flat price: ₹5,999.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0a0a'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%23c9a24d' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script>
+(function () {
+  var d = document.documentElement;
+  d.className += ' js';
+  try {
+    var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!rm && !sessionStorage.getItem('nc_intro')) d.className += ' intro';
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
+
 <div class="bg-grid" aria-hidden="true"></div>
 <div class="bg-glow" aria-hidden="true"></div>
 
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader-panel preloader-panel--top"></div>
+  <div class="preloader-panel preloader-panel--bottom"></div>
+  <div class="preloader-core">
+    <svg class="preloader-ring" viewBox="0 0 120 120" fill="none">
+      <circle class="preloader-ring-track" cx="60" cy="60" r="52" stroke-width="1"/>
+      <circle class="preloader-ring-draw" cx="60" cy="60" r="52" stroke-width="2"/>
+    </svg>
+    <p class="preloader-word">NEXUS CRAFT</p>
+  </div>
+  <p class="preloader-counter" id="preloader-counter">000</p>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor-ring" id="cursor-ring"><span class="cursor-label" id="cursor-label"></span></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+</div>
+
 <header class="site-header">
   <div class="header-inner">
-    <a href="#top" class="brand">
-      <img src="assets/logo.png" alt="NEXUS CRAFT logo" class="brand-logo" width="40" height="40">
+    <a href="#top" class="brand" data-cursor>
+      <img src="assets/logo.png" alt="NEXUS CRAFT logo" class="brand-logo" width="40" height="40" onerror="this.style.display='none'">
       <span class="brand-word">NEXUS CRAFT</span>
     </a>
+    <p class="header-tag">CONNECT · CREATE · ELEVATE</p>
   </div>
 </header>
 
 <main id="top">
+
   <section id="hero" class="hero">
     <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero-inner">
-      <p class="eyebrow">NEXUS CRAFT · WEBSITE DEVELOPMENT STUDIO</p>
-      <h1 class="hero-headline">Your next customer just <em>Googled</em> you. What did they find?</h1>
-      <p class="hero-subhead">A great business with a weak website is a secret — and secrets don't sell. NEXUS CRAFT builds fast, beautiful, conversion-ready websites for businesses that mean business. Every service we offer, bundled at one flat, honest price.</p>
-      <div class="hero-footer">
+      <p class="eyebrow hero-eyebrow" data-hero-fade>NEXUS CRAFT · WEBSITE DEVELOPMENT STUDIO</p>
+      <h1 class="hero-headline">
+        <span class="line-mask"><span class="line" data-hero-line>Your next customer</span></span>
+        <span class="line-mask"><span class="line" data-hero-line>just <em class="hero-em">Googled<svg class="hero-em-ring" viewBox="0 0 200 80" fill="none" aria-hidden="true" preserveAspectRatio="none"><path id="hero-em-path" d="M14 44 C10 20 62 8 104 10 C152 12 192 22 190 42 C188 62 138 72 92 70 C48 68 12 62 16 38"/></svg></em> you.</span></span>
+        <span class="line-mask line-mask--sub"><span class="line hero-sub-line" data-hero-line>What did they find?</span></span>
+      </h1>
+      <p class="hero-subhead" data-hero-fade>A great business with a weak website is a secret — and secrets don't sell. NEXUS CRAFT builds fast, beautiful, conversion-ready websites for businesses that mean business. Every service we offer, bundled at one flat, honest price.</p>
+      <div class="hero-footer" data-hero-fade>
         <div class="hero-call">
           <p class="call-label">CALL US — 10 MINUTES IS ENOUGH</p>
-          <a href="tel:+916369885901" class="hero-phone">+91 63698 85901</a>
+          <a href="tel:+916369885901" class="hero-phone" data-cursor="call" data-magnetic>+91 63698 85901</a>
         </div>
         <div class="hero-price-block">
           <p class="hero-price">₹5,999</p>
@@ -41,93 +77,142 @@
         </div>
       </div>
     </div>
+    <div class="hero-scrollcue" data-hero-fade aria-hidden="true"><span class="hero-scrollcue-line"></span></div>
   </section>
 
-  <section id="services" class="reveal">
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marquee-track">
+      <span class="marquee-seg">CONNECT&nbsp;·&nbsp;<i>CREATE</i>&nbsp;·&nbsp;ELEVATE&nbsp;·&nbsp;NEXUS&nbsp;CRAFT&nbsp;·&nbsp;</span><span class="marquee-seg">CONNECT&nbsp;·&nbsp;<i>CREATE</i>&nbsp;·&nbsp;ELEVATE&nbsp;·&nbsp;NEXUS&nbsp;CRAFT&nbsp;·&nbsp;</span><span class="marquee-seg">CONNECT&nbsp;·&nbsp;<i>CREATE</i>&nbsp;·&nbsp;ELEVATE&nbsp;·&nbsp;NEXUS&nbsp;CRAFT&nbsp;·&nbsp;</span>
+    </div>
+  </div>
+
+  <section id="services">
     <div class="container">
-      <p class="eyebrow">WHAT'S INCLUDED</p>
-      <h2 class="section-heading">Everything your website needs. Nothing you don't.</h2>
-      <p class="section-subhead">Seven services. One studio. One person who picks up the phone — no agencies, no middlemen, no "let me check with the team."</p>
+      <p class="eyebrow" data-reveal>WHAT'S INCLUDED</p>
+      <h2 class="section-heading" data-reveal>Everything your website needs. Nothing you don't.</h2>
+      <p class="section-subhead" data-reveal>Seven services. One studio. One person who picks up the phone — no agencies, no middlemen, no "let me check with the team."</p>
 
-      <div class="services-grid">
-        <article class="service-card">
-          <p class="service-label">BUILD</p>
-          <h3 class="service-name">Custom Website Development</h3>
-          <p class="service-desc">Designed from a blank canvas around your business, no templates, no lookalikes.</p>
-        </article>
-        <article class="service-card">
-          <p class="service-label">CONVERT</p>
-          <h3 class="service-name">Landing Pages</h3>
-          <p class="service-desc">One page, one goal: turn clicks into calls, sign-ups, and sales.</p>
-        </article>
-        <article class="service-card">
-          <p class="service-label">REFRESH</p>
-          <h3 class="service-name">Website Redesign</h3>
-          <p class="service-desc">Your business grew. Your website didn't. Let's fix that.</p>
-        </article>
-        <article class="service-card">
-          <p class="service-label">PROTECT</p>
-          <h3 class="service-name">Website Maintenance</h3>
-          <p class="service-desc">Updates, backups, uptime, handled, while you run the business.</p>
-        </article>
-        <article class="service-card">
-          <p class="service-label">RANK</p>
-          <h3 class="service-name">Speed &amp; SEO Optimization</h3>
-          <p class="service-desc">Loads in a blink. Ranks where your customers actually look.</p>
-        </article>
-        <article class="service-card">
-          <p class="service-label">CONNECT</p>
-          <h3 class="service-name">API &amp; Third-Party Integrations</h3>
-          <p class="service-desc">Payments, WhatsApp, maps, bookings, everything wired to work together.</p>
-        </article>
-        <article class="service-card">
-          <p class="service-label">RESCUE</p>
-          <h3 class="service-name">Bug Fixes &amp; Support</h3>
-          <p class="service-desc">Something broke at 9 PM? You have our number. Consider it handled.</p>
-        </article>
-      </div>
+      <ol class="services-index">
+        <li class="service-row" data-reveal-row>
+          <span class="service-num" aria-hidden="true">01</span>
+          <h3 class="service-action">BUILD<span class="sr-only"> — Custom Website Development</span></h3>
+          <div class="service-info">
+            <p class="service-name" aria-hidden="true">Custom Website Development</p>
+            <p class="service-desc">Designed from a blank canvas around your business, no templates, no lookalikes.</p>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+        <li class="service-row" data-reveal-row>
+          <span class="service-num" aria-hidden="true">02</span>
+          <h3 class="service-action">CONVERT<span class="sr-only"> — Landing Pages</span></h3>
+          <div class="service-info">
+            <p class="service-name" aria-hidden="true">Landing Pages</p>
+            <p class="service-desc">One page, one goal: turn clicks into calls, sign-ups, and sales.</p>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+        <li class="service-row" data-reveal-row>
+          <span class="service-num" aria-hidden="true">03</span>
+          <h3 class="service-action">REFRESH<span class="sr-only"> — Website Redesign</span></h3>
+          <div class="service-info">
+            <p class="service-name" aria-hidden="true">Website Redesign</p>
+            <p class="service-desc">Your business grew. Your website didn't. Let's fix that.</p>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+        <li class="service-row" data-reveal-row>
+          <span class="service-num" aria-hidden="true">04</span>
+          <h3 class="service-action">PROTECT<span class="sr-only"> — Website Maintenance</span></h3>
+          <div class="service-info">
+            <p class="service-name" aria-hidden="true">Website Maintenance</p>
+            <p class="service-desc">Updates, backups, uptime, handled, while you run the business.</p>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+        <li class="service-row" data-reveal-row>
+          <span class="service-num" aria-hidden="true">05</span>
+          <h3 class="service-action">RANK<span class="sr-only"> — Speed &amp; SEO Optimization</span></h3>
+          <div class="service-info">
+            <p class="service-name" aria-hidden="true">Speed &amp; SEO Optimization</p>
+            <p class="service-desc">Loads in a blink. Ranks where your customers actually look.</p>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+        <li class="service-row" data-reveal-row>
+          <span class="service-num" aria-hidden="true">06</span>
+          <h3 class="service-action">CONNECT<span class="sr-only"> — API &amp; Third-Party Integrations</span></h3>
+          <div class="service-info">
+            <p class="service-name" aria-hidden="true">API &amp; Third-Party Integrations</p>
+            <p class="service-desc">Payments, WhatsApp, maps, bookings, everything wired to work together.</p>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+        <li class="service-row" data-reveal-row>
+          <span class="service-num" aria-hidden="true">07</span>
+          <h3 class="service-action">RESCUE<span class="sr-only"> — Bug Fixes &amp; Support</span></h3>
+          <div class="service-info">
+            <p class="service-name" aria-hidden="true">Bug Fixes &amp; Support</p>
+            <p class="service-desc">Something broke at 9 PM? You have our number. Consider it handled.</p>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+      </ol>
 
-      <div class="services-footer">
+      <div class="services-footer" data-reveal>
         <p>All seven services. One flat price.</p>
-        <a href="#pricing" class="see-price-link">SEE THE NUMBER →</a>
+        <a href="#pricing" class="see-price-link" data-cursor data-magnetic>SEE THE NUMBER →</a>
       </div>
     </div>
   </section>
 
-  <section id="pricing" class="reveal">
-    <div class="container">
-      <div class="pricing-panel">
-        <p class="eyebrow">THE WHOLE STUDIO, ONE PRICE</p>
-        <p class="price-giant">₹5,999</p>
-        <p class="price-subline">Every service. Flat. Final.</p>
-        <p class="pricing-body">No hourly billing. No hidden add-ons. No "that'll be extra." You know the number before we write a single line of code.</p>
-        <ul class="pricing-checklist">
-          <li>Custom build</li>
-          <li>Landing pages</li>
-          <li>Redesign</li>
-          <li>Maintenance</li>
-          <li>Speed &amp; SEO</li>
-          <li>Integrations</li>
-          <li>Fixes &amp; support</li>
-        </ul>
+  <section id="pricing">
+    <div class="pricing-pin">
+      <div class="pricing-stage">
+        <div class="pricing-backdrop" aria-hidden="true"></div>
+        <div class="container">
+          <div class="pricing-panel" id="pricing-panel">
+            <svg class="pricing-border" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><rect id="pricing-border-rect" x="0.5" y="0.5" width="99" height="99"/></svg>
+            <h2 class="eyebrow pricing-eyebrow" data-reveal>THE WHOLE STUDIO, ONE PRICE</h2>
+            <p class="price-giant" id="price-giant" aria-label="₹5,999">
+              <span class="odo-static" aria-hidden="true">₹</span><span class="odo-digit" data-digit="5" aria-hidden="true"><span class="odo-strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-static" aria-hidden="true">,</span><span class="odo-digit" data-digit="9" aria-hidden="true"><span class="odo-strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-digit" data-digit="9" aria-hidden="true"><span class="odo-strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="odo-digit" data-digit="9" aria-hidden="true"><span class="odo-strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span>
+            </p>
+            <div class="price-bloom" aria-hidden="true"></div>
+            <p class="price-subline" data-reveal>Every service. Flat. Final.</p>
+            <p class="pricing-body" data-reveal>No hourly billing. No hidden add-ons. No "that'll be extra." You know the number before we write a single line of code.</p>
+            <ul class="pricing-checklist">
+              <li data-chip>Custom build</li>
+              <li data-chip>Landing pages</li>
+              <li data-chip>Redesign</li>
+              <li data-chip>Maintenance</li>
+              <li data-chip>Speed &amp; SEO</li>
+              <li data-chip>Integrations</li>
+              <li data-chip>Fixes &amp; support</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="process" class="reveal">
+  <section id="process">
     <div class="container">
-      <div class="process-grid">
-        <div class="process-step">
+      <h2 class="sr-only">Process</h2>
+      <div class="process-rail">
+        <svg class="process-thread" id="process-thread" preserveAspectRatio="none" viewBox="0 0 2 100" aria-hidden="true"><line id="process-thread-line" x1="1" y1="0" x2="1" y2="100"/></svg>
+        <div class="process-step" data-step>
+          <span class="process-node" aria-hidden="true"></span>
           <span class="step-tag">STEP 01</span>
           <h3 class="step-title">CALL — Tell us about your business</h3>
           <p class="step-desc">Ten minutes on the phone is enough. What you do, who you serve, what you want the website to achieve.</p>
         </div>
-        <div class="process-step">
+        <div class="process-step" data-step>
+          <span class="process-node" aria-hidden="true"></span>
           <span class="step-tag">STEP 02</span>
           <h3 class="step-title">CRAFT — We design and build</h3>
           <p class="step-desc">You keep running the business. We craft a site that looks premium, loads fast, and speaks to your customers.</p>
         </div>
-        <div class="process-step">
+        <div class="process-step" data-step>
+          <span class="process-node" aria-hidden="true"></span>
           <span class="step-tag">STEP 03</span>
           <h3 class="step-title">LAUNCH — Your site goes live</h3>
           <p class="step-desc">Polished, tested, and ready to sell, with us on call for fixes, updates, and whatever comes next.</p>
@@ -136,33 +221,41 @@
     </div>
   </section>
 
-  <section id="cta" class="reveal">
-    <div class="container">
-      <p class="cta-line">Let's build the website your business <em>deserves</em>.</p>
-      <a href="tel:+916369885901" class="cta-phone">+91 63698 85901</a>
-      <p class="cta-subline">ONE CALL · ONE PRICE · ONE REMARKABLE WEBSITE</p>
+  <section id="cta">
+    <div class="cta-bg" aria-hidden="true"></div>
+    <div class="container cta-inner">
+      <h2 class="sr-only">Call NEXUS CRAFT</h2>
+      <p class="cta-line" data-reveal>Let's build the website your business <em>deserves</em>.</p>
+      <a href="tel:+916369885901" class="cta-phone" id="cta-phone" data-cursor="call" data-magnetic>+91 63698 85901<svg class="cta-underline" viewBox="0 0 100 6" preserveAspectRatio="none" aria-hidden="true"><line id="cta-underline-line" x1="0" y1="3" x2="100" y2="3"/></svg></a>
+      <p class="cta-subline" data-reveal>ONE CALL · ONE PRICE · ONE REMARKABLE WEBSITE</p>
     </div>
   </section>
+
 </main>
 
 <footer class="site-footer">
-    <div class="container footer-inner">
-      <p class="footer-brand">NEXUS CRAFT — WEBSITE DEVELOPMENT STUDIO</p>
-      <div class="footer-icons">
-        <a href="mailto:nexuscraftstudio.co@gmail.com" aria-label="Email NEXUS CRAFT">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
-        </a>
-        <a href="tel:+916369885901" aria-label="Call NEXUS CRAFT">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </a>
-        <a href="https://instagram.com/nexuscraft_websitescreation" aria-label="NEXUS CRAFT on Instagram" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
-        </a>
-      </div>
-      <p class="footer-credit">CRAFTED BY SREEVATHSON</p>
+  <div class="container footer-inner">
+    <p class="footer-brand">NEXUS CRAFT — WEBSITE DEVELOPMENT STUDIO</p>
+    <div class="footer-icons">
+      <a href="mailto:nexuscraftstudio.co@gmail.com" aria-label="Email NEXUS CRAFT" data-cursor>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+      </a>
+      <a href="tel:+916369885901" aria-label="Call NEXUS CRAFT" data-cursor="call">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+      <a href="https://instagram.com/nexuscraft_websitescreation" aria-label="NEXUS CRAFT on Instagram" target="_blank" rel="noopener noreferrer" data-cursor="open">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+      </a>
     </div>
+    <p class="footer-credit">CRAFTED BY SREEVATHSON</p>
+  </div>
+  <div class="footer-ghost" aria-hidden="true">NEXUS CRAFT</div>
 </footer>
 
-<script src="script.js"></script>
+<script src="js/vendor/motion.min.js" defer></script>
+<script src="js/vendor/lenis.min.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/hero.js" defer></script>
+<script src="js/scenes.js" defer></script>
 </body>
 </html>
